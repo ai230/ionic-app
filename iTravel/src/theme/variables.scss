@@ -1,0 +1,37 @@
+$font-path: "../assets/fonts";
+$app-direction: ltr;
+
+@import "ionic.globals";
+
+// Named Color Variables
+$colors: (
+  primary:    #489dff,
+  secondary:  #32db95,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
+);
+
+// App Android
+// Top Toolber
+$toolbar-md-background: color($colors, primary);
+
+
+// App iOS Variables
+// Top Toolber
+$toolbar-ios-background: color($colors, primary);
+// App Material Design Variables
+
+// App Windows Variables
+
+// App Theme
+@import "ionic.theme.default";
+
+
+// Ionicons
+@import "ionic.ionicons";
+
+
+// Fonts
+@import "roboto";
+@import "noto-sans";

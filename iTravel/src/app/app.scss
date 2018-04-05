@@ -1,0 +1,23 @@
+.toolbar-title {
+  .subtitle {
+    font-size: 66%;
+    margin: 0;
+
+  }
+}
+
+ion-navbar{
+  button{
+    background-color: color($colors, primary);
+    color: white;
+  }
+}
+
+ion-scroll {
+  white-space: nowrap;
+  height: 100px;
+}
+
+ion-icon {
+  font-size: 25px;
+}

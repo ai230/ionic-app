@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Travel</ion-title>
+    <ion-buttons end>
+      <button (click)="addTravel(travel)">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button (click)="deleteTravel()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-input placeholder="Title" [(ngModel)]="travel.title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Start Date</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="travel.startDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Finish Date</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM DD YYYY" [(ngModel)]="travel.finishDate"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button block ion-button outline (click)="showConfirm()">
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+  </button>
+
+  <img [src]="base64Image" *ngIf="base64Image" />
+</ion-content>

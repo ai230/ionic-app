@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My plan</ion-title>
+    <ion-buttons end>
+      <button (click)="openEditTravel()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card *ngFor="let item of travelList" (click)="navigateToTabPage(item)">
+    <img height="200" [src]="item.base64Image" />
+    <div class="card-title">{{item.title}}</div>
+    <div class="card-subtitle">{{item.startDate}} - {{item.finishDate}}</div>
+  </ion-card>
+  <div padding *ngIf="!travelList">
+    <Button ion-button block outline icon-left (click)="openEditTravel()">
+      <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>
+      Create firest travel plan
+    </Button>
+  </div>
+</ion-content>

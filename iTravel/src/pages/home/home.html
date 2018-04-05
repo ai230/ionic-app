@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{travel.title}}
+      <p class="subtitle">{{travel.startDate}}-{{travel.finishDate}}</p>
+    </ion-title>
+
+    <ion-buttons end>
+      <button (click)="openEditSchedule(false)">
+        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+      </button>
+      <button (click)="openSetting(true)">
+        <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let date of dateList">
+    <ion-list-header>
+      {{date}}
+    </ion-list-header>
+
+    <div *ngFor="let activity of activityList" (click)="openEditSchedule(activity, true)">
+      <ion-item *ngIf="date==activity.date">
+        <ion-avatar item-start>
+          <ion-icon [ios]="activity.iconName" [md]="activity.iconName"></ion-icon>
+        </ion-avatar>
+        <h2>{{activity.startTime}} - {{activity.finishTime}}</h2>
+        <h2>{{activity.title}}</h2>
+        <p>{{activity.memo}}</p>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

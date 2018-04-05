@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      {{travel.title}}
+      <p class="subtitle">{{travel.startDate}}-{{travel.finishDate}}</p>
+    </ion-title>
+    <ion-buttons end>
+      <button (click)="addActivity()">
+        <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+      </button>
+      <button (click)="deleteActivity(item)">
+        <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-scroll scrollX="true">
+
+    <ion-buttons>
+      <button *ngFor="let item of icons" (click)="selectIcon(item.icon)">
+        <ion-icon *ngIf="!item.isActive" name="{{ item.icon }}"></ion-icon>
+        <ion-icon *ngIf="item.isActive" name="{{ item.iconActive }}"></ion-icon>
+        <p>{{ item.iconName }}</p>
+      </button>
+    </ion-buttons>
+
+  </ion-scroll>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-input placeholder="Title" [(ngModel)]="activity.title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Start time</ion-label>
+            <ion-datetime displayFormat="hh:mm a" [(ngModel)]="activity.startTime"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Finish time</ion-label>
+            <ion-datetime displayFormat="hh:mm a" [(ngModel)]="activity.finishTime"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="activity.date"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Memo" [(ngModel)]="activity.memo"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

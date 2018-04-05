@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div padding class="profile-image">
+    <img height="100" width="100" [attr.src]="profile.photoUrl" />
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <strong>Username: </strong> {{(profileData)?.username}}
+          </ion-item>
+          <ion-item>
+            <strong>First Name: </strong> {{(profileData)?.firstname}}
+          </ion-item>
+          <ion-item>
+            <strong>Last Name: </strong> {{(profileData)?.lastname}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <button block ion-button outline (click)="presentConfirm()">
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+  </button>
+
+
+</ion-content>
