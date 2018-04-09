@@ -29,7 +29,7 @@ export class RegisterPage {
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       if (result) {
-        this.navCtrl.setRoot(ProfilePage);
+        this.navCtrl.push(TabsPage);
       }
     }
     catch (e) {

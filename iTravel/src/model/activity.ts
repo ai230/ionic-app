@@ -2,7 +2,7 @@ import { DateTime } from "ionic-angular";
 
 export interface Activity {
     key?: string,//optional
-    iconName: string;
+    iconUrl: string;
     title: string;
     startTime: string;
     finishTime: string;

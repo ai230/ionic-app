@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheet, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheet, AlertController } from 'ionic-angular';
 import { Activity } from '../../model/activity';
 import { Travel } from '../../model/travel';
 import { TravelPage } from '../travel/travel';
@@ -7,7 +7,6 @@ import { FirebaseSevice } from '../../providers/traveling-service/firebase.servi
 import { storage } from 'firebase';
 import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { CameraService } from '../../providers/camera.service';
 import { TravelingServiceProvider } from '../../providers/traveling-service/traveling.service';
 
 @IonicPage()
@@ -19,20 +18,16 @@ export class EditTravelPage {
   travel = {} as Travel;
   index: string;
   editState: boolean = false;
-  travelData: Array<Travel>;
   uid;
-  urlRef;
 
   private base64Image: string;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private actionSheetCtrl: ActionSheetController,
     public firebaseService: FirebaseSevice,
     public travelService: TravelingServiceProvider,
     private camera: Camera,
-    private cameraService: CameraService,
     private alertCtrl: AlertController) {
 
     this.editState = this.navParams.get('editState');
@@ -40,6 +35,8 @@ export class EditTravelPage {
 
     if (this.editState) {
       this.travel = this.travelService.getMyTravel();
+    } else {
+      this.travel.base64Image = "./assets/imgs/sampleBG.jpg";
     }
   }
 
@@ -51,7 +48,6 @@ export class EditTravelPage {
     if (this.editState) {
       this.editTravel(this.travel);
     } else {
-      console.log(this.travel.title);
       this.firebaseService.addTravel(this.travel).then(ref => {
         this.travel.key = ref.key;
         this.travel.base64Image = this.base64Image;
@@ -100,26 +96,53 @@ export class EditTravelPage {
     });
   }
 
+  deleteTravel() {
+    this.firebaseService.deleteTravel(this.uid, this.travel.key).then(ref => {
+      this.navCtrl.setRoot(TravelPage);
+    })
+  }
+
   showConfirm() {
     let alert = this.alertCtrl.create({
+      title: 'Picture',
+      message: 'Do you want to take a picture or choose a photo?',
       buttons: [
         {
-          text: 'Take Photo',
-          handler: () => {
-            this.takePicture();
-          }
-        },
-        {
-          text: 'Select Photo',
+          text: 'Gallery',
           handler: () => {
             this.selectPicture();
           }
         },
         {
+          text: 'Camera',
+          handler: () => {
+            this.takePicture();
+          }
+        },
+        {
           text: 'Cancel',
           role: 'cancel',
-          handler: () => {
+          handler: () => { }
+        }
+      ]
+    });
+    alert.present();
+  }
 
+  deleteConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Delete',
+      message: 'Do you want to delete this plan?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => { }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteTravel();
           }
         }
       ]

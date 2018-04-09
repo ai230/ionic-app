@@ -7,5 +7,5 @@ export interface Travel {
     finishDate: string;
     activity: Array<Activity>;
     base64Image: string;
-    photoUrl: string;
+    // photoUrl: string;
 }

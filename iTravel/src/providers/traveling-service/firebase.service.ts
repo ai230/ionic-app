@@ -6,12 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import { Activity } from '../../model/activity';
 import { TravelingServiceProvider } from './traveling.service';
 import { storage } from 'firebase';
+import { Memo } from '../../model/memo';
 
 @Injectable()
 export class FirebaseSevice {
 
     private travelingListRef;
     private activityListRef;
+    private memoListRef;
     travelingList$: Observable<Travel[]>
     travelData: AngularFireObject<Travel[]>
     private res: any;
@@ -60,6 +62,7 @@ export class FirebaseSevice {
      */
 
     getActivityAuth(itemKey: String) {
+        console.log('getActivityAuth!');
         this.afAuth.authState.subscribe(data => {
             this.activityListRef = this.afDatabase.list(`travel/${data.uid}/${itemKey}/activity`)
         })
@@ -74,13 +77,37 @@ export class FirebaseSevice {
     }
 
     /**
+     * Adding & Editing Memo 
+     */
+
+    getMemoAuth(itemKey: String) {
+        this.afAuth.authState.subscribe(data => {
+            this.memoListRef = this.afDatabase.list(`travel/${data.uid}/${itemKey}/memo`)
+        })
+    }
+
+    addMemo(itemKey: String, memo: Memo) {
+        return this.memoListRef.push(memo);
+    }
+
+    editMemo(memo: Memo) {
+        return this.memoListRef.update(memo.key, memo);
+    }
+
+    /**
      * remove Activity 
      */
+
+    deleteTravel(uid: string, travelKey: string) {
+        return this.afDatabase.list(`travel/${uid}/${travelKey}`).remove();
+    }
 
     deleteActivity(uid: string, travelKey: string, activityKey: string) {
         return this.afDatabase.list(`travel/${uid}/${travelKey}/activity/${activityKey}`).remove();
     }
-    // async sample1() {
-    //     return "sample1";
-    // }
+
+    deleteMemo(uid: string, travelKey: string, memoKey: string) {
+        return this.afDatabase.list(`travel/${uid}/${travelKey}/memo/${memoKey}`).remove();
+    }
+
 }

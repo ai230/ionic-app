@@ -1,12 +1,13 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Travel</ion-title>
+
     <ion-buttons end>
       <button (click)="addTravel(travel)">
-        <ion-icon name="checkmark"></ion-icon>
+        <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
       </button>
-      <button (click)="deleteTravel()">
-        <ion-icon name="trash"></ion-icon>
+      <button (click)="deleteConfirm()">
+        <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -36,6 +37,5 @@
   <button block ion-button outline (click)="showConfirm()">
     <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
   </button>
-
-  <img [src]="base64Image" *ngIf="base64Image" />
+  <img [src]="travel.base64Image" *ngIf="travel" />
 </ion-content>

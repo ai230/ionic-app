@@ -21,3 +21,31 @@ ion-scroll {
 ion-icon {
   font-size: 25px;
 }
+
+ion-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.activity-icon {
+  width: 50px;
+  height: 50px;
+  padding: 7px;
+}
+
+.activity-icon-active{
+  background-color: color($colors, dark);
+  width: 50px;
+  height: 50px;
+  padding: 7px;
+  border-radius: 50%;
+}
+
+.tabs-page .back-button {
+  display: inline-block;
+}

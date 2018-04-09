@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{travel.title}}
+      <p class="subtitle">{{travel.startDate}}-{{travel.finishDate}}</p>
+    </ion-title>
+    <ion-buttons right>
+      <button (click)="navigateToEditMemoPage(false)">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of memoList" (click)="navigateToEditMemoPage(item,true)">
+      <p> {{item.dateTime}} {{item.content}}</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

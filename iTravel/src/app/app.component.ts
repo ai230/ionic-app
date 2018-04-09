@@ -13,8 +13,8 @@ import { EditTravelPage } from '../pages/edit-travel/edit-travel';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  email: string;
-  uid: string;
+  // email: string;
+  // uid: string;
   rootPage: any = LoginPage;
 
   constructor(

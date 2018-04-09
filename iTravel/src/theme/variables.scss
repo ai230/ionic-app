@@ -5,21 +5,34 @@ $app-direction: ltr;
 
 // Named Color Variables
 $colors: (
-  primary:    #489dff,
-  secondary:  #32db95,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  // primary:    #594F4F,
+  // secondary:  #547980,
+  // danger:     #F56991,
+  // light:      #E5FCC2,
+  // dark:       #45ADA8
+
+  primary:    #E06150,
+  secondary:  #FFBE73,
+  danger:     #BB2814,
+  light:      #FFFFCE,
+  dark:       #70937D
 );
+
+$loading-ios-background: transparent;
+$loading-md-background: $loading-ios-background;
+$loading-wp-background: $loading-ios-background;
 
 // App Android
 // Top Toolber
 $toolbar-md-background: color($colors, primary);
-
+//spinner
+$spinner-md-bubbles-color:color($colors, primary);
 
 // App iOS Variables
 // Top Toolber
 $toolbar-ios-background: color($colors, primary);
+//spinner
+$spinner-ios-bubbles-color:color($colors, primary);
 // App Material Design Variables
 
 // App Windows Variables
@@ -35,3 +48,5 @@ $toolbar-ios-background: color($colors, primary);
 // Fonts
 @import "roboto";
 @import "noto-sans";
+
+

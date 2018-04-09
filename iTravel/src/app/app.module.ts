@@ -25,7 +25,9 @@ import { TravelingServiceProvider } from '../providers/traveling-service/traveli
 import { Camera } from '@ionic-native/camera';
 import { UserServiceProvider } from '../providers/user.service';
 import { DatePipe } from '@angular/common';
-import { CameraService } from '../providers/camera.service';
+import { MemoPage } from '../pages/memo/memo';
+import { EditMemoPage } from '../pages/edit-memo/edit-memo';
+import { SpinnerDialog } from '@ionic-native/spinner-dialog';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { CameraService } from '../providers/camera.service';
     HomePage,
     EditActivityPage,
     AboutPage,
+    MemoPage,
+    EditMemoPage,
     TabsPage
   ],
   imports: [
@@ -59,6 +63,8 @@ import { CameraService } from '../providers/camera.service';
     HomePage,
     EditActivityPage,
     AboutPage,
+    MemoPage,
+    EditMemoPage,
     TabsPage
   ],
   providers: [
@@ -68,9 +74,9 @@ import { CameraService } from '../providers/camera.service';
     FirebaseSevice,
     TravelingServiceProvider,
     UserServiceProvider,
-    CameraService,
     Camera,
-    DatePipe
+    DatePipe,
+    SpinnerDialog
   ]
 })
 export class AppModule { }

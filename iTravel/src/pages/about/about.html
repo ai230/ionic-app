@@ -9,7 +9,7 @@
 <ion-content padding>
 
   <div padding class="profile-image">
-    <img height="100" width="100" [attr.src]="profile.photoUrl" />
+    <img height="100" width="100" style="border-radius: 50%;" [src]="profileData.photoUrl" *ngIf="profileData" />
   </div>
 
   <ion-grid>

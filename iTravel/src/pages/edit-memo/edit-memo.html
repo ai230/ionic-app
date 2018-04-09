@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      {{travel.title}}
+      <p class="subtitle">{{travel.startDate}}-{{travel.finishDate}}</p>
+    </ion-title>
+    <ion-buttons right>
+      <button (click)="addMemo()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button (click)="deleteConfirm()">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="memo.dateTime"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-textarea rows="5" placeholder="Memo" [(ngModel)]="memo.content"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

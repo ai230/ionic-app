@@ -5,17 +5,25 @@
       <p class="subtitle">{{travel.startDate}}-{{travel.finishDate}}</p>
     </ion-title>
 
-    <ion-buttons end>
-      <button (click)="openEditSchedule(false)">
-        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    <ion-buttons left>
+      <button (click)="backToList()">
+        <ion-icon name="arrow-back"></ion-icon>
       </button>
-      <button (click)="openSetting(true)">
-        <ion-icon ios="ios-briefcase" md="md-briefcase"></ion-icon>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button (click)="navigateToEditActivityPage(false)">
+        <ion-icon name="add"></ion-icon>
       </button>
+      <button (click)="navigateToEditTravelPage(true)">
+        <ion-icon name="briefcase"></ion-icon>
+      </button>
+
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
+
 
 <ion-content padding>
   <ion-list *ngFor="let date of dateList">
@@ -23,14 +31,14 @@
       {{date}}
     </ion-list-header>
 
-    <div *ngFor="let activity of activityList" (click)="openEditSchedule(activity, true)">
-      <ion-item *ngIf="date==activity.date">
-        <ion-avatar item-start>
-          <ion-icon [ios]="activity.iconName" [md]="activity.iconName"></ion-icon>
-        </ion-avatar>
-        <h2>{{activity.startTime}} - {{activity.finishTime}}</h2>
-        <h2>{{activity.title}}</h2>
-        <p>{{activity.memo}}</p>
+    <div *ngFor="let item of activityList" (click)="navigateToEditActivityPage(item, true)">
+      <ion-item *ngIf="date==item.date">
+        <button item-start style="background: transparent !important;">
+          <img [src]="item.iconUrl" />
+        </button>
+        <h2>{{item.startTime}} - {{item.finishTime}}</h2>
+        <h2>{{item.title}}</h2>
+        <p>{{item.memo}}</p>
       </ion-item>
     </div>
   </ion-list>

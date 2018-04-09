@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Profile } from '../../model/profile'
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { HomePage } from '../home/home';
-import { TabsPage } from '../tabs/tabs';
 import { TravelPage } from '../travel/travel';
 
 @IonicPage()

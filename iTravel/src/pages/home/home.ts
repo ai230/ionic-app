@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Profile } from '../../model/profile';
-import { AlertController } from 'ionic-angular';
+import { IonicPage, NavController, DateTime, App } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { EditActivityPage } from '../edit-activity/edit-activity';
-import { FirebaseSevice } from '../../providers/traveling-service/firebase.service';
 import { Travel } from '../../model/travel';
 import { TravelingServiceProvider } from '../../providers/traveling-service/traveling.service';
 import { Activity } from '../../model/activity';
 import { EditTravelPage } from '../edit-travel/edit-travel';
+import { DatePipe } from '@angular/common';
+import { TravelPage } from '../travel/travel';
+import { FirebaseSevice } from '../../providers/traveling-service/firebase.service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -18,23 +19,20 @@ import { EditTravelPage } from '../edit-travel/edit-travel';
 })
 export class HomePage {
   travel = {} as Travel;
-  activity = {} as Activity;
-  item: any = {};
-  uid: string = "";
+  // uid: string = "";
   activityList: Array<Activity>;
   res: any = {};
   editState: boolean;
   dateList = [];
-  dateArrayList = [];
 
   constructor(
     private afAuth: AngularFireAuth,
     private afDatabase: AngularFireDatabase,
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private toast: ToastController,
     public firebaseService: FirebaseSevice,
-    public travelingService: TravelingServiceProvider) {
+    public travelingService: TravelingServiceProvider,
+    public datepipe: DatePipe,
+    public appCtrl: App) {
     this.travel = this.travelingService.getMyTravel();
   }
 
@@ -43,7 +41,7 @@ export class HomePage {
     this.getActivityFromFirebase();
   }
 
-  openEditSchedule(item: Activity, editState: boolean) {
+  navigateToEditActivityPage(item: Activity, editState: boolean) {
     this.travelingService.setMyActivity(item);
     this.editState = editState;
     this.navCtrl.push(EditActivityPage, {
@@ -51,7 +49,7 @@ export class HomePage {
     })
   }
 
-  openSetting(editState: boolean) {
+  navigateToEditTravelPage(editState: boolean) {
     this.navCtrl.push(EditTravelPage, {
       editState: editState
     });
@@ -77,14 +75,16 @@ export class HomePage {
       });
       // adjust time
       this.activityList.forEach(value => {
-        value.startTime = value.startTime.substring(value.date.length + 1, value.startTime.length);
-        value.finishTime = value.finishTime.substring(value.date.length + 1, value.finishTime.length);
+        value.startTime = this.datepipe.transform(new Date(value.startTime), 'HH:mm');
+        value.finishTime = this.datepipe.transform(new Date(value.finishTime), 'HH:mm');
+        console.log(value.startTime);
       })
       this.createDateList()
     }
   }
   createDateList() {
     if (this.activityList) {
+      this.dateList = [];
       for (var i = 0; i < this.activityList.length; i++) {
         if (this.dateList.indexOf(this.activityList[i].date)) {
           this.dateList.push(this.activityList[i].date)
@@ -94,4 +94,9 @@ export class HomePage {
       }
     }
   }
+
+  backToList() {
+    this.appCtrl.getRootNavs()[0].setRoot(TravelPage);
+  }
+
 }
