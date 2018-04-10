@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth'
 import { ProfilePage } from '../profile/profile';
+import { TravelPage } from '../travel/travel';
 
 @IonicPage()
 @Component({
@@ -29,7 +30,7 @@ export class RegisterPage {
     try {
       const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
       if (result) {
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(TravelPage);
       }
     }
     catch (e) {

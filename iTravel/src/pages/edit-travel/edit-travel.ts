@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheet, AlertController } from 'ionic-angular';
-// import { Activity } from '../../model/activity';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Travel } from '../../model/travel';
 import { TravelPage } from '../travel/travel';
 import { FirebaseSevice } from '../../providers/traveling-service/firebase.service';
-// import { storage } from 'firebase';
-import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
+// import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TravelingServiceProvider } from '../../providers/traveling-service/traveling.service';
 
@@ -36,7 +34,8 @@ export class EditTravelPage {
     if (this.editState) {
       this.travel = this.travelService.getMyTravel();
     } else {
-      this.travel.base64Image = "./assets/imgs/sampleBG.jpg";
+      this.base64Image = "./assets/imgs/sampleBG.jpg";
+      this.travel.base64Image = this.base64Image;
     }
   }
 
