@@ -2,13 +2,13 @@
 
   <ion-navbar>
     <ion-title>My plan</ion-title>
-  </ion-navbar>
 
-  <ion-buttons right>
-    <button (click)="openEditTravel()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-buttons>
+    <ion-buttons right>
+      <button (click)="openEditTravel()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="card-background-page">
@@ -18,9 +18,4 @@
     <div class="card-subtitle">{{item.startDate}} - {{item.finishDate}}</div>
   </ion-card>
 
-  <ion-fab right bottom>
-    <button ion-fab color="dark" (click)="openEditTravel()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
 </ion-content>

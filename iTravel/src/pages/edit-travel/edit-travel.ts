@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheet, AlertController } from 'ionic-angular';
-import { Activity } from '../../model/activity';
+// import { Activity } from '../../model/activity';
 import { Travel } from '../../model/travel';
 import { TravelPage } from '../travel/travel';
 import { FirebaseSevice } from '../../providers/traveling-service/firebase.service';
-import { storage } from 'firebase';
+// import { storage } from 'firebase';
 import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { TravelingServiceProvider } from '../../providers/traveling-service/traveling.service';
@@ -73,6 +73,7 @@ export class EditTravelPage {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.travel.base64Image = this.base64Image;
     }, (err) => {
       console.log(err);
     });
@@ -91,6 +92,7 @@ export class EditTravelPage {
     }).then((imageData) => {
       // imageData is a base64 encoded string
       this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.travel.base64Image = this.base64Image;
     }, (err) => {
       console.log(err);
     });
@@ -132,7 +134,7 @@ export class EditTravelPage {
   deleteConfirm() {
     let alert = this.alertCtrl.create({
       title: 'Delete',
-      message: 'Do you want to delete this plan?',
+      message: 'Do you want to delete this plan? Also all of your schedule for this plan will be deleted.',
       buttons: [
         {
           text: 'Cancel',

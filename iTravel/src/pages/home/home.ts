@@ -38,7 +38,15 @@ export class HomePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter HomePage');
     this.getActivityFromFirebase();
+  }
+
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter HomePage');
   }
 
   navigateToEditActivityPage(item: Activity, editState: boolean) {
@@ -77,7 +85,6 @@ export class HomePage {
       this.activityList.forEach(value => {
         value.startTime = this.datepipe.transform(new Date(value.startTime), 'HH:mm');
         value.finishTime = this.datepipe.transform(new Date(value.finishTime), 'HH:mm');
-        console.log(value.startTime);
       })
       this.createDateList()
     }

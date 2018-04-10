@@ -66,6 +66,13 @@ export class EditActivityPage {
       this.activity.memo = "";
     }
   }
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter EditSchedulePage');
+  }
+
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter EditSchedulePage');
+  }
 
   addActivity() {
     // edit activity

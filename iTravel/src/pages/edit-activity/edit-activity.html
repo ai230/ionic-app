@@ -9,9 +9,9 @@
       <button (click)="addActivity()">
         <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
       </button>
-      <button (click)="deleteConfirm()">
+      <!-- <button (click)="deleteConfirm()">
         <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
-      </button>
+      </button> -->
     </ion-buttons>
   </ion-navbar>
 
@@ -52,4 +52,8 @@
     </ion-row>
   </ion-grid>
 
+  <button (click)="deleteConfirm()" ion-button clear block icon-left *ngIf="editState">
+    <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+    Delete this schedule
+  </button>
 </ion-content>

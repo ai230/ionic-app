@@ -1,13 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Travel</ion-title>
+    <ion-title>Your plan</ion-title>
 
     <ion-buttons end>
       <button (click)="addTravel(travel)">
         <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
-      </button>
-      <button (click)="deleteConfirm()">
-        <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -38,4 +35,10 @@
     <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
   </button>
   <img [src]="travel.base64Image" *ngIf="travel" />
+  <div>
+    <button (click)="deleteConfirm()" ion-button clear block icon-left *ngIf="editState">
+      <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+      Delete this plan
+    </button>
+  </div>
 </ion-content>
