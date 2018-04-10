@@ -9,9 +9,6 @@
       <button (click)="addMemo()">
         <ion-icon name="checkmark"></ion-icon>
       </button>
-      <button (click)="deleteConfirm()">
-        <ion-icon name="trash"></ion-icon>
-      </button>
     </ion-buttons>
   </ion-navbar>
 
@@ -34,4 +31,10 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <button (click)="deleteConfirm()" ion-button clear block icon-left *ngIf="editState">
+    <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+    Delete this memo
+  </button>
+
 </ion-content>

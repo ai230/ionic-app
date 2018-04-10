@@ -6,7 +6,7 @@ import { TabsPage } from '../tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth'
 import { ProfilePage } from '../profile/profile';
 import { TravelPage } from '../travel/travel';
-
+import { Storage } from '@ionic/storage'
 @IonicPage()
 @Component({
   selector: 'page-register',
@@ -16,6 +16,7 @@ export class RegisterPage {
   user = {} as User;
 
   constructor(
+    public storage: Storage,
     private afAuth: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,6 +36,21 @@ export class RegisterPage {
     }
     catch (e) {
       console.log(e);
+      let msg = this.checkError(e.code);
+      this.showAlert("Error", msg);
+    }
+  }
+
+  checkError(code: string) {
+    switch (code) {
+      case "auth/email-already-in-use":
+        return "The email address is already in use by another account.";
+      case "auth/argument-error":
+        return "password must be a valid string.";
+      case "auth/weak-password":
+        return "Password should be at least 6 characters";
+      default:
+        return "Please check your email and password";
     }
   }
 
