@@ -12,6 +12,9 @@ import { DatePipe } from '@angular/common';
 import { TravelPage } from '../travel/travel';
 import { FirebaseSevice } from '../../providers/traveling-service/firebase.service';
 import { LoginPage } from '../login/login';
+import { WeatherServiceProvider } from '../../providers/weather-service/weather-service';
+import { Weather } from '../../model/weather';
+
 
 @Component({
   selector: 'page-home',
@@ -19,11 +22,11 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
   travel = {} as Travel;
-  // uid: string = "";
   activityList: Array<Activity>;
   res: any = {};
   editState: boolean;
   dateList = [];
+  weather: any;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -32,7 +35,8 @@ export class HomePage {
     public firebaseService: FirebaseSevice,
     public travelingService: TravelingServiceProvider,
     public datepipe: DatePipe,
-    public appCtrl: App) {
+    public appCtrl: App,
+    public weatherProvider: WeatherServiceProvider) {
     this.travel = this.travelingService.getMyTravel();
   }
 
@@ -105,5 +109,4 @@ export class HomePage {
   backToList() {
     this.appCtrl.getRootNavs()[0].setRoot(TravelPage);
   }
-
 }

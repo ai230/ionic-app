@@ -28,6 +28,10 @@ import { DatePipe } from '@angular/common';
 import { MemoPage } from '../pages/memo/memo';
 import { EditMemoPage } from '../pages/edit-memo/edit-memo';
 import { SpinnerDialog } from '@ionic-native/spinner-dialog';
+import { WeatherServiceProvider } from '../providers/weather-service/weather-service';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';// angular5 
+import { OpenWeatherPage } from '../pages/open-weather/open-weather';
 
 @NgModule({
   declarations: [
@@ -42,9 +46,12 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
     AboutPage,
     MemoPage,
     EditMemoPage,
+    OpenWeatherPage,
     TabsPage
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
@@ -65,6 +72,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
     AboutPage,
     MemoPage,
     EditMemoPage,
+    OpenWeatherPage,
     TabsPage
   ],
   providers: [
@@ -76,7 +84,8 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog';
     UserServiceProvider,
     Camera,
     DatePipe,
-    SpinnerDialog
+    SpinnerDialog,
+    WeatherServiceProvider
   ]
 })
 export class AppModule { }

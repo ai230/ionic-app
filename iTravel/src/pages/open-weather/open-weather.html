@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>openWeather</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="weather-forecast-list">
+    <h3 class="weather-forecast-list__header">Weekly weather</h3>
+    <table class="weather-forecast-list__table" *ngFor="let item of weatherList">
+      <tbody>
+        <tr class="weather-forecast-list__items">
+          <td class="weather-forecast-list__item">
+            <p>{{item.date | date :"EEEE"}}
+              <br> {{item.date | date :"d MMM"}}
+              <br> {{item.date | date :"shortTime"}}</p>
+            <!-- <img [src]="item.icon" alt="forecast"> {{item.date | date :"shortTime"}} -->
+          </td>
+          <td class="weather-forecast-list__item">
+            <img [src]="item.icon" alt="forecast">
+          </td>
+          <td class="weather-forecast-list__item">
+            <p class="weather-forecast-list__card">
+              <span class="weather-forecast-list__day">
+                {{item.tempMin}}°C
+              </span>
+              <span class="weather-forecast-list__night">
+                {{item.tempMax}}°C
+              </span>
+            </p>
+            <p class="weather-forecast-list__card">
+              <i>{{item.description}}</i>
+
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
