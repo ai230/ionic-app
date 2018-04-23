@@ -7,16 +7,25 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+    <ion-label floating>City</ion-label>
+    <ion-input type="text" [(ngModel)]="city" value="{{city}}"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Country</ion-label>
+    <ion-input type="text" [(ngModel)]="country" value="{{country}}"></ion-input>
+  </ion-item>
+  <div padding>
+    <button (click)="loadWeather(city,country)" ion-button block>Search</button>
+  </div>
   <div class="weather-forecast-list">
-    <h3 class="weather-forecast-list__header">Weekly weather</h3>
+    <h3 class="weather-forecast-list__header">Weekly weather {{city}},{{country}}</h3>
     <table class="weather-forecast-list__table" *ngFor="let item of weatherList">
       <tbody>
         <tr class="weather-forecast-list__items">
           <td class="weather-forecast-list__item">
-            <p>{{item.date | date :"EEEE"}}
+            <p>{{item.date | date :"EEE"}}
               <br> {{item.date | date :"d MMM"}}
-              <br> {{item.date | date :"shortTime"}}</p>
-            <!-- <img [src]="item.icon" alt="forecast"> {{item.date | date :"shortTime"}} -->
           </td>
           <td class="weather-forecast-list__item">
             <img [src]="item.icon" alt="forecast">
@@ -32,7 +41,6 @@
             </p>
             <p class="weather-forecast-list__card">
               <i>{{item.description}}</i>
-
             </p>
           </td>
         </tr>

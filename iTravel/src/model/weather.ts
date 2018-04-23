@@ -3,7 +3,7 @@ export interface Weather {
     date: string;
     main: string;
     description: string;
-    tempMin: number;
-    tempMax: number;
+    tempMin: string;
+    tempMax: string;
     icon: string
 }

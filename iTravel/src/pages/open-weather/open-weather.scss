@@ -1,18 +1,10 @@
 page-open-weather {
-    // table {
-    //     display: table;
-    //     border-color: grey;
-    // }
     .weather-forecast-list__table {
         border-collapse: collapse;
     }
     .weather-forecast-list__item {
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
         border-top: 1px solid #ddd;
         padding: 8px;
-        vertical-align: middle;
     }
     .weather-forecast-list__card
     >.weather-forecast-list__day,

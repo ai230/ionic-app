@@ -9,44 +9,46 @@ import { Weather } from '../../model/weather';
   templateUrl: 'open-weather.html',
 })
 export class OpenWeatherPage {
-  data: any;
-  list: any;
+  city: string;
+  country: string;
+  list = {} as any;
   weather: Weather;
   weatherList: Array<Weather>;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public weatherProvider: WeatherServiceProvider) {
-    this.loadWeather();
+    this.city = 'Vancouver';
+    this.country = 'ca';
+    this.loadWeather(this.city, this.country);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OpenWeatherPage');
-
   }
 
-  loadWeather() {
-    this.weatherProvider.load()
+  loadWeather(city: string, country: string) {
+    this.city = city;
+    this.country = country;
+    this.weatherProvider.load(this.city, this.country)
       .then(data => {
-        this.data = data;
-        this.list = data.list;
-        this.perseJson();
+        this.perseJson(data);
       })
   }
 
-  perseJson() {
+  perseJson(data: any) {
+    this.list = data.list;
     console.log(this.list.length);
     this.weatherList = new Array<Weather>();
     for (var i = 0; i < this.list.length; i++) {
       this.weather = {} as Weather;
-      this.weather.main = this.list[0].weather[0].main;
-      this.weather.description = this.list[0].weather[0].description;
-      this.weather.tempMin = this.getTemperature(this.list[0].main.temp_min);
-      this.weather.tempMax = this.getTemperature(this.list[0].main.temp_max);
-      this.weather.icon = '//openweathermap.org/img/w/' + this.list[0].weather[0].icon + '.png';
+      this.weather.main = this.list[i].weather[0].main;
+      this.weather.description = this.list[i].weather[0].description;
+      this.weather.tempMin = this.getTemperature(this.list[i].main.temp_min);
+      this.weather.tempMax = this.getTemperature(this.list[i].main.temp_max);
+      this.weather.icon = './assets/imgs/weatherIcons/' + this.list[i].weather[0].icon + '.png';
       this.weather.date = this.list[i].dt_txt;
-      console.log(this.weather);
-      if (this.weather.date.includes("00:00:00")) {
+      if (this.weather.date.includes("15:00:00")) {
         this.weatherList.push(this.weather);
       }
     }
@@ -54,6 +56,7 @@ export class OpenWeatherPage {
 
   getTemperature(f: number) {
     //T(°C) = T(K) - 273.15
-    return Math.round(f - 273.15);
+    return (f - 273.15).toFixed(1);
   }
+
 }

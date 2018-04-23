@@ -7,14 +7,22 @@ export class WeatherServiceProvider {
   apiKey = '67fd385d18d9a2e80403b1e6ed1c976e';
   url;
   data: any;
+
+  country: string;
+  city: string;
+
   constructor(public http: HttpClient) {
-    this.url = 'http://api.openweathermap.org/data/2.5/forecast?q=Vancouver,ca&APPID=' + this.apiKey;
   }
 
-  load() {
-    if (this.data) {
-      return Promise.resolve(this.data);
+  load(city: string, country: string) {
+    if (city) {
+      this.city = city;
+      this.country = country;
+    } else {
+      this.city = 'Vancouver';
+      this.country = 'ca';
     }
+    this.url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + this.city + ',' + this.country + '&APPID=' + this.apiKey;
 
     return new Promise(resolve => {
       // We're using Angular HTTP provider to request the data,
@@ -26,6 +34,7 @@ export class WeatherServiceProvider {
         .subscribe(data => {
           // we've got back the raw data, now generate the core schedule data
           // and save the data for later reference
+          console.log(data);
           this.data = data;
           resolve(this.data);
         });
